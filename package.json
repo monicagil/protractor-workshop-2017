@@ -4,10 +4,12 @@
   "description": "This is a Workshop about Protractor",
   "main": "index.js",
   "scripts": {
+   "clean": "DEL dist",
+   "prebuild": "npm run clean",       
     "build": "tsc",
     "test": "npm run build && protractor dist/protractor/config.js"
   },
-  "repository": {
+  "repository": { 
     "type": "git",
     "url": "git+https://github.com/monicagil/protractor-workshop-2017.git"
   },
