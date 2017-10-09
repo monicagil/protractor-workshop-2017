@@ -2,7 +2,7 @@ import { $, ElementFinder, promise } from 'protractor';
 
 export class OrderResumePage {
     private get selectButton(): ElementFinder {
-        return $('#center_column > ul > li > div > div.left-block > div > a.product_img_link > img');
+        return $('.product_img_link');
     }
 
     public goToSelect(): promise.Promise<void> {
