@@ -52,21 +52,19 @@ export class PersonalInformationPage {
         return element(by.id('content')).element(by.tagName('h1')).getText();
     }
 
-    public async fillForm(datos: PersonalInformation): Promise<void> {
-        await this.firstNameField.click();
-        await this.firstNameField.sendKeys(datos.firstName);
-        await this.lastNameField.click();
-        await this.lastNameField.sendKeys(datos.lastName);
-        await this.sexOption(datos.sex).click();
-        await this.experienceOption(datos.experience).click();
-        for (let profession of datos.profession) {
+    public async fillForm(form: PersonalInformation): Promise<void> {
+        await this.firstNameField.sendKeys(form.firstName);
+        await this.lastNameField.sendKeys(form.lastName);
+        await this.sexOption(form.sex).click();
+        await this.experienceOption(form.experience).click();
+        for (let profession of form.profession) {
             await this.professionCheck(profession).click();
         }
-        for (let tool of datos.tools) {
+        for (let tool of form.tools) {
             await this.toolsCheck(tool).click();
         }
-        await this.continentOption(datos.continent).click();
-        for (let command of datos.commands) {
+        await this.continentOption(form.continent).click();
+        for (let command of form.commands) {
             await this.commandsOption(command).click();
         }
         await this.submitButton.click();

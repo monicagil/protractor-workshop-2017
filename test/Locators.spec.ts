@@ -23,6 +23,7 @@ describe('Open page', () => {
                 'WebElement Commands']
         });
     });
+
     it('por fin llene el formulario', async () => {
         expect(await personalInformationPage.getPageTitle()).toBe('Practice Automation Form');
     });
