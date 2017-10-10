@@ -6,12 +6,12 @@ export class OrderResumePage {
     }
 
     private findByProduct(itemName: string): ElementFinder {
-        return this.productContainerList
-            .filter((item: ElementFinder) =>
-                item.$('.product-name')
-                    .getText()
-                    .then((text: string) => text.includes(itemName)))
-            .first();
+      return this.productContainerList
+        .filter((item: ElementFinder) =>
+          item.$('.product-name')
+            .getText()
+            .then((text: string) => text.includes(itemName)))
+        .first();
     }
 
     public selectProduct(productName: string): promise.Promise<void> {
