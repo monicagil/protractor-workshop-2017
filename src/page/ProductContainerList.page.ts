@@ -1,6 +1,6 @@
 import { $$, ElementFinder, ElementArrayFinder, promise } from 'protractor';
 
-export class OrderResumePage {
+export class ProductContainerListPage {
     private get products(): ElementArrayFinder {
         return $$('.product-container');
     }

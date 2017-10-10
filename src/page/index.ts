@@ -1,5 +1,5 @@
 export { MenuContentPage } from './MenuContent.page';
-export { OrderResumePage } from './OrderResume.page';
+export { ProductContainerListPage } from './ProductContainerList.page';
 export { ProductDetailPage } from './ProductDetail.page';
 export { ProductAddedModalPage } from './ProductAddedModal.page';
 export { SummaryStepPage } from './SummaryStep.page';
