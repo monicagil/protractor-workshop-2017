@@ -12,7 +12,6 @@ interface PersonalInformation {
 }
 
 export class PersonalInformationPage {
-
     private get firstNameField(): ElementFinder {
         return element(by.name('firstname'));
     }
@@ -29,8 +28,8 @@ export class PersonalInformationPage {
         return element(by.css(`[name="exp"][value="${years}"]`));
     }
 
-    private profesionCheck(prof: string): ElementFinder {
-        return element(by.css(`[name="profession"][value="${prof}"]`));
+    private professionCheck(profession: string): ElementFinder {
+        return element(by.css(`[name="profession"][value="${profession}"]`));
     }
 
     private toolsCheck(tool: string): ElementFinder {
@@ -60,8 +59,8 @@ export class PersonalInformationPage {
         await this.lastNameField.sendKeys(datos.lastName);
         await this.sexOption(datos.sex).click();
         await this.experienceOption(datos.experience).click();
-        for (let prof of datos.profession) {
-            await this.profesionCheck(prof).click();
+        for (let profession of datos.profession) {
+            await this.professionCheck(profession).click();
         }
         for (let tool of datos.tools) {
             await this.toolsCheck(tool).click();
