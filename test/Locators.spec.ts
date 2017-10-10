@@ -24,7 +24,7 @@ describe('Open page', () => {
         });
     });
 
-    it('por fin llene el formulario', async () => {
+    it('the form is ready....', async () => {
         expect(await personalInformationPage.getPageTitle()).toBe('Practice Automation Form');
     });
 });

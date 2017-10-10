@@ -57,14 +57,14 @@ export class PersonalInformationPage {
         await this.lastNameField.sendKeys(form.lastName);
         await this.sexOption(form.sex).click();
         await this.experienceOption(form.experience).click();
-        for (let profession of form.profession) {
+        for (const profession of form.profession) {
             await this.professionCheck(profession).click();
         }
-        for (let tool of form.tools) {
+        for (const tool of form.tools) {
             await this.toolsCheck(tool).click();
         }
         await this.continentOption(form.continent).click();
-        for (let command of form.commands) {
+        for (const command of form.commands) {
             await this.commandsOption(command).click();
         }
         await this.submitButton.click();
