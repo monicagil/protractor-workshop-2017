@@ -25,7 +25,7 @@ describe('Open page', () => {
             const summaryStepPage: SummaryStepPage = new SummaryStepPage();
 
             await menuContentPage.goToTShirtMenu();
-            await orderResumePage.goToSelect();
+            await orderResumePage.selectProduct('Faded Short Sleeve T-shirts');
             await productDetailPage.goToAddToCar();
             await productAddedModalPage.goToCheckout();
             await summaryStepPage.goToProceedToCheckout();
@@ -51,7 +51,7 @@ describe('Open page', () => {
                         await paymentStepPage.goTopaymentOption();
                         await bankPaymentPage.goToconfirm();
                     });
-                    it('perefect!!! it is mine', async () => {
+                    it('perfect!!! it is mine', async () => {
                         const productListPage: ProductListPage = new ProductListPage();
                         await expect(productListPage.getOrderText()).toBe('Your order on My Store is complete.');
                     });
