@@ -1,12 +1,12 @@
 import { $$, ElementFinder, ElementArrayFinder, promise } from 'protractor';
 
-export class ProductContainerListPage {
-    private get products(): ElementArrayFinder {
+export class OrderResumePage {
+    private get productContainerList(): ElementArrayFinder {
         return $$('.product-container');
     }
 
     private findByProduct(itemName: string): ElementFinder {
-        return this.products
+        return this.productContainerList
             .filter((item: ElementFinder) =>
                 item.$('.product-name')
                     .getText()
