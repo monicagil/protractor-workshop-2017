@@ -12,9 +12,26 @@ describe('working with iframe', () => {
         beforeAll(async () => {
             await iFramePage.setFrameHeight(700);
         });
-
         it('then new height', async () => {
             expect(await iFramePage.getHeight()).toBe(700);
+        });
+    });
+
+    describe('I switch to iframe', () => {
+        beforeAll(async () => {
+            await iFramePage.switchToFrame();
+        });
+        it('the title of iframe', async () => {
+            expect(await iFramePage.getTitlePage()).toBe('Practice Automation Form');
+        });
+    });
+
+    describe('I switch to main page', () => {
+        beforeAll(async () => {
+            await iFramePage.switchToMainPage();
+        });
+        it('the title of main page', async () => {
+            expect(await iFramePage.getTitlePage()).toBe('Sample Iframe page');
         });
     });
 });
