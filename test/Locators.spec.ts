@@ -20,11 +20,16 @@ describe('Open page', () => {
                 'Navigation Commands',
                 'Switch Commands',
                 'Wait Commands',
-                'WebElement Commands']
+                'WebElement Commands'],
+            file: './resources/reporte.png'
         });
     });
 
     it('the form is ready....', async () => {
         expect(await personalInformationPage.getPageTitle()).toBe('Practice Automation Form');
+    });
+
+    it('then filename is loaded', async () => {
+        expect(await personalInformationPage.getFileName()).toBe('reporte.png');
     });
 });
