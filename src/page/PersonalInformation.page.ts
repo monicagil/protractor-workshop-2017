@@ -1,4 +1,8 @@
+import { browser } from 'protractor';
 import { element, by, ElementFinder } from 'protractor';
+import * as remote from 'selenium-webdriver/remote';
+import { resolve } from 'path';
+import { existsSync } from 'fs';
 
 interface PersonalInformation {
     firstName: string;
@@ -9,6 +13,7 @@ interface PersonalInformation {
     tools?: string[];
     continent?: string;
     commands?: string[];
+    file?: string;
 }
 
 export class PersonalInformationPage {
@@ -18,6 +23,10 @@ export class PersonalInformationPage {
 
     private get lastNameField(): ElementFinder {
         return element(by.name('lastname'));
+    }
+
+    private get fileInput(): ElementFinder {
+        return element(by.id("photo"));
     }
 
     private sexOption(name: string): ElementFinder {
@@ -48,6 +57,20 @@ export class PersonalInformationPage {
         return element(by.id('submit'));
     }
 
+    private async uploadFile(filePath: string): Promise<void> {
+        const fullPath = resolve(process.cwd(), filePath);
+        if (existsSync(fullPath)) {
+            await browser.setFileDetector(new remote.FileDetector());
+            await this.fileInput.sendKeys(fullPath);
+            await browser.setFileDetector(undefined);
+        }
+    }
+
+    public async getFileName(): Promise<string> {
+        const filePath = await this.fileInput.getAttribute('value');
+        return filePath.match(/[^\\]*$/)[0];
+    }
+
     public async getPageTitle(): Promise<string> {
         return element(by.id('content')).element(by.tagName('h1')).getText();
     }
@@ -67,6 +90,11 @@ export class PersonalInformationPage {
         for (const command of form.commands) {
             await this.commandsOption(command).click();
         }
+        await this.uploadFile(form.file);
+    }
+
+    public async submit(form: PersonalInformation): Promise<void> {
+        await this.fillForm(form);
         await this.submitButton.click();
     }
 }
