@@ -68,7 +68,7 @@ export class PersonalInformationPage {
 
     public async getFileName(): Promise<string> {
         const filePath = await this.fileInput.getAttribute('value');
-        return filePath.substring(filePath.length - 11);
+        return filePath.match(/[^\\]*$/)[0];
     }
 
     public async getPageTitle(): Promise<string> {
