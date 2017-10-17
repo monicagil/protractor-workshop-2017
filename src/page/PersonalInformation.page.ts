@@ -3,6 +3,7 @@ import { element, by, ElementFinder } from 'protractor';
 import * as remote from 'selenium-webdriver/remote';
 import { resolve } from 'path';
 import { existsSync } from 'fs';
+import { DownloadService } from '../service';
 
 interface PersonalInformation {
     firstName: string;
@@ -14,6 +15,7 @@ interface PersonalInformation {
     continent?: string;
     commands?: string[];
     file?: string;
+    downloadFile?: string;
 }
 
 export class PersonalInformationPage {
@@ -57,6 +59,10 @@ export class PersonalInformationPage {
         return element(by.id('submit'));
     }
 
+    private get fileToDownloadLink(): ElementFinder {
+        return element(by.linkText('Test File to Download'));
+    }
+
     private async uploadFile(filePath: string): Promise<void> {
         const fullPath = resolve(process.cwd(), filePath);
         if (existsSync(fullPath)) {
@@ -64,6 +70,12 @@ export class PersonalInformationPage {
             await this.fileInput.sendKeys(fullPath);
             await browser.setFileDetector(undefined);
         }
+    }
+
+    private async download(): Promise<void> {
+        const link = await this.fileToDownloadLink.getAttribute('href');
+        const service = new DownloadService();
+        await service.downloadFile(link, 'test-document.xlsx');
     }
 
     public async getFileName(): Promise<string> {
@@ -91,6 +103,7 @@ export class PersonalInformationPage {
             await this.commandsOption(command).click();
         }
         await this.uploadFile(form.file);
+        await this.download();
     }
 
     public async submit(form: PersonalInformation): Promise<void> {
