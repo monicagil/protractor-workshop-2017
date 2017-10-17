@@ -1,5 +1,6 @@
 import { browser } from 'protractor';
 import { PersonalInformationPage } from '../src/page';
+import { DownloadService } from '../src/service';
 
 describe('Open page', () => {
     beforeAll(async () => {
@@ -31,5 +32,11 @@ describe('Open page', () => {
 
     it('then filename is loaded', async () => {
         expect(await personalInformationPage.getFileName()).toBe('reporte.png');
+    });
+
+    it('then file is download', async () => {
+        const service = new DownloadService();
+        const file = await service.readFileFromTemp('test-document.xlsx');
+        expect(await file.length).toBeGreaterThan(100);
     });
 });
