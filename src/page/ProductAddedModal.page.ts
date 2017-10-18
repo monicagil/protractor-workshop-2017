@@ -6,7 +6,7 @@ export class ProductAddedModalPage {
     }
 
     public async goToCheckout(): Promise<void> {
-        await browser.wait(ExpectedConditions.elementToBeClickable(this.checkOutButton), 3000);
+        await browser.wait(ExpectedConditions.elementToBeClickable(this.checkOutButton), 5000);
         await this.checkOutButton.click();
     }
 }

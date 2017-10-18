@@ -1,4 +1,4 @@
-import { $, ElementFinder, promise } from 'protractor';
+import { $, browser, ElementFinder, promise } from 'protractor';
 
 export class ProductDetailPage {
     private get addToCarButton(): ElementFinder {
@@ -6,6 +6,7 @@ export class ProductDetailPage {
     }
 
     public goToAddToCar(): promise.Promise<void> {
+        browser.sleep(5000);
         return this.addToCarButton.click();
     }
 }
